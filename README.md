@@ -20,6 +20,24 @@ I am going to learn in this course:
 
 </div>
 
+## Course Authors ✒️
+
+The course materials is written by: 
+* [Matti Luukkainen](https://github.com/mluukkai)
+* [Developers from Terveystalo](https://www.terveystalo.com/fi/Yritystietoa/Terveystalo-tyontantajana/Digital-Health/)
+* [Kalle Ilves](https://github.com/Kaltsoon)
+* [Developers from Smartly](https://www.smartly.io/)
+* [Jami Kousa](https://github.com/jakousa)
+* [Numerous people](https://github.com/fullstack-hy2020/misc/blob/master/contributors.md)
+
+
+## Exercise Solutions 🗃️
+
+### Part 0 - Fundamentals of Web apps
+
+[0.4: New note diagram](/part-00/00_4_new-note-diagram.md)
+
+
 
 
 ## The Learner 👨🏽‍💻
