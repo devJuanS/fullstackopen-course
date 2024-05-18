@@ -23,20 +23,21 @@ I am going to learn in this course:
 ## Course Authors ✒️
 
 The course materials is written by: 
-* [Matti Luukkainen](https://github.com/mluukkai)
-* [Developers from Terveystalo](https://www.terveystalo.com/fi/Yritystietoa/Terveystalo-tyontantajana/Digital-Health/)
-* [Kalle Ilves](https://github.com/Kaltsoon)
-* [Developers from Smartly](https://www.smartly.io/)
-* [Jami Kousa](https://github.com/jakousa)
-* [Numerous people](https://github.com/fullstack-hy2020/misc/blob/master/contributors.md)
+- [Matti Luukkainen](https://github.com/mluukkai)
+- [Developers from Terveystalo](https://www.terveystalo.com/fi/Yritystietoa/Terveystalo-tyontantajana/Digital-Health/)
+- [Kalle Ilves](https://github.com/Kaltsoon)
+- [Developers from Smartly](https://www.smartly.io/)
+- [Jami Kousa](https://github.com/jakousa)
+- [Numerous people](https://github.com/fullstack-hy2020/misc/blob/master/contributors.md)
 
+---
 
 ## Exercise Solutions 🗃️
 
 ### Part 0 - Fundamentals of Web apps
 
-[0.4: New note diagram](/part-00/00_4_new-note-diagram.md)
-
+- [0.4: New note diagram](/part-00/00_4_new-note-diagram.md)
+- [0.5: Single page app diagram](/part-00/00_5_spa-diagram.md)
 
 
 
@@ -45,6 +46,6 @@ The course materials is written by:
 <div align="center">
 <strong>Juan Sebastian</strong>
 
-[![My GitHub](https://skillicons.dev/icons?i=github)](https://github.com/devJuanS)
+[![My GitHub](https://skillicons.dev/icons?i=github)](https://github.com/devJuanS "devJuanS' GitHub profile")
 
 </div>

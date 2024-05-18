@@ -1,6 +1,6 @@
 ## 0.4: New note diagram
 
-Create a similar diagram depicting the situation where the user creates a new note on the page [https://studies.cs.helsinki.fi/exampleapp/notes](https://studies.cs.helsinki.fi/exampleapp/notes) by writing something into the text field and clicking the Save button.
+Create a similar diagram depicting the situation where the user creates a new note on the page https://studies.cs.helsinki.fi/exampleapp/notes by writing something into the text field and clicking the Save button.
 
 *Solution:*
 
@@ -12,7 +12,7 @@ sequenceDiagram
     browser->>+server: POST https://studies.cs.helsinki.fi/exampleapp/new_note (note=Knowing+the+fundamentals+will+make+you+an+outstanding+developer)
     Note right of browser: The browser initiates a POST request sending to the server the content in the input to the server
     server-->>-browser: URL redirect: https://studies.cs.helsinki.fi/exampleapp/notes
-    Note left of server: The server responds with the 'URL redirect' where the browser should perform a new GET request
+    Note left of server: the server responds with the 'URL redirect' where the browser should perform a new GET request
     
     browser->>+server: GET https://studies.cs.helsinki.fi/exampleapp/notes
     server-->>-browser: HTML document
