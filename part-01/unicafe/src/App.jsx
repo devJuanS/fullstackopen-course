@@ -8,6 +8,9 @@ const Button = ( {onClick, text} ) => <button onClick={ onClick }>{ text }</butt
 
 const StatisticsLine = ( {text, value} ) => <p>{ text }: { value }</p>;
 
+/**
+ * App component that returns the content for the app.
+ */
 function App() {
   // save clicks of each button to its own state
   const [good, setGood]       = useState(0);
@@ -17,6 +20,10 @@ function App() {
   const handleGoodClick    = () => setGood(good + 1);
   const handleNeutralClick = () => setNeutral(neutral + 1);
   const handleBadClick     = () => setBad(bad + 1);
+
+  const total    = good + neutral + bad,
+        average  = ((good -bad) / total) || 0,
+        positive = (good / total * 100) || 0;
 
   return (
     <>
@@ -46,8 +53,20 @@ function App() {
           value = { neutral } 
         />
         <StatisticsLine 
-          text  = 'Badd' 
+          text  = 'Bad' 
           value = { bad } 
+        />
+        <StatisticsLine 
+          text  = 'All' 
+          value = { total } 
+        />
+        <StatisticsLine 
+          text  = 'Average' 
+          value = { average } 
+        />
+        <StatisticsLine 
+          text  = 'Positive' 
+          value = { positive + '%' } 
         />
       </div>
     </>
