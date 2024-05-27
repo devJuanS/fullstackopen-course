@@ -18,3 +18,6 @@ This part is to get familiar with React library and look at certain JavaScript f
 
 1. Step 1: Create the unicafe feedback app with Vite+React and using states for collecting customer feedback.
 2. Step 2: Expand the application so that it shows more statistics about the gathered feedback: the total number of collected feedback, the average score (good: 1, neutral: 0, bad: 1) and the percentage of positive feedback.
+3. Step 3: Refactor the application so that displaying the statistics is extracted into its own Statistics component.
+4. Step 4: Change the application to display statistics only once feedback has been gathered.
+5. Step 5: Refactor the application to extract the `Button` and `StaticLine` components from `App`.
