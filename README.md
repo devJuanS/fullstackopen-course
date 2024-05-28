@@ -44,6 +44,7 @@ The course materials is written by:
 
 - [Course Information](/part-01/course-info/)
 - [Unicafe](/part-01/unicafe)
+- [Anecdotes from Software Engieneers](/part-01/anecdotes/)
 
 
 

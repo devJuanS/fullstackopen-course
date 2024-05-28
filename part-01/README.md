@@ -22,3 +22,7 @@ This part is to get familiar with React library and look at certain JavaScript f
 4. Step 4: Change the application to display statistics only once feedback has been gathered.
 5. Step 5: Refactor the application to extract the `Button` and `StaticLine` components from `App`.
 6. Step 6: Display the statistics in an HTML table
+
+[Anecdotes from Software Engieneers](/part-01/anecdotes/)
+
+1. Step 1: Create the anecdotes app with Vite+React to display a random anecdote.
