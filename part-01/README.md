@@ -26,3 +26,4 @@ This part is to get familiar with React library and look at certain JavaScript f
 [Anecdotes from Software Engieneers](/part-01/anecdotes/)
 
 1. Step 1: Create the anecdotes app with Vite+React to display a random anecdote.
+2. Step 2: Expand the application so that you can vote for the displayed anecdote.
