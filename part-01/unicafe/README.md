@@ -23,3 +23,7 @@ Like most companies, the student restaurant of the University of Helsinki Unicaf
 **Goal**: Extract the components for buttons and statistic lines from `App` component into:
 - Button: handles the functionality of each feedback submission button.
 - StaticLine: for displaying a single statistic, e.g. the average score.
+
+## Step 6: Display the statistics in an HTML table
+
+**Goal**: Modify the application so that the statistics is displayed using an HTML table.

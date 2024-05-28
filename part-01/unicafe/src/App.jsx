@@ -2,12 +2,26 @@ import { useState } from 'react'
 
 const Header = props => <h1>{props.text}</h1>;
 
-const Title = props => <h2>{props.text}</h2>;
+const Title  = props => <h2>{props.text}</h2>;
 
 const Button = ( {onClick, text} ) => <button onClick={ onClick }>{ text }</button>;
 
-const StatisticsLine = ( {text, value} ) => <p>{ text }: { value }</p>;
+const StatisticsLine = ( {text, value} ) => {
+  return (
+    <>
+      <tr>
+        <td>{ text }</td>
+        <td>{ value }</td>
+      </tr>
+    </>
+  );
+}
 
+/**
+ * Display the Statistics section with from the feedback gathered.
+ * @param {number} props 
+ * @returns 
+ */
 const Statistics = ( {goodValue: good, neutralValue: neutral, badValue: bad} ) => {
   if ( !good && !neutral && !bad ) {
     return (
@@ -25,30 +39,34 @@ const Statistics = ( {goodValue: good, neutralValue: neutral, badValue: bad} ) =
   return (
     <>
       <Title text='Statistics' />
-      <StatisticsLine 
-          text  = 'Good' 
-          value = { good } 
-        />
-        <StatisticsLine 
-          text  = 'Neutral' 
-          value = { neutral } 
-        />
-        <StatisticsLine 
-          text  = 'Bad' 
-          value = { bad } 
-        />
-        <StatisticsLine 
-          text  = 'All' 
-          value = { total } 
-        />
-        <StatisticsLine 
-          text  = 'Average' 
-          value = { average } 
-        />
-        <StatisticsLine 
-          text  = 'Positive' 
-          value = { positive + '%' } 
-        />
+      <table>
+        <tbody>
+          <StatisticsLine 
+              text  = 'Good' 
+              value = { good } 
+            />
+          <StatisticsLine 
+            text  = 'Neutral' 
+            value = { neutral } 
+          />
+          <StatisticsLine 
+            text  = 'Bad' 
+            value = { bad } 
+          />
+          <StatisticsLine 
+            text  = 'All' 
+            value = { total } 
+          />
+          <StatisticsLine 
+            text  = 'Average' 
+            value = { average } 
+          />
+          <StatisticsLine 
+            text  = 'Positive' 
+            value = { positive + '%' } 
+          />
+        </tbody>
+      </table>
     </>
   );
 }
