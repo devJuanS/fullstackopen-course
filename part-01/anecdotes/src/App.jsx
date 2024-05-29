@@ -10,6 +10,44 @@ const random = ( minValue, maxValue ) => {
   return Math.floor(Math.random() * (maxValue - minValue) + minValue);
 }
 
+const Header = props => <h1>{props.text}</h1>;
+
+const Title  = props => <h2>{props.text}</h2>;
+
+const Button = ( {onClick, text} ) => <button onClick={ onClick }>{ text }</button>;
+
+const Quotation = ( {quote} ) => <blockquote>{ quote }</blockquote>;
+
+const VotesLegend = ( {votes} ) => {
+  return (
+    <p>This anecdote has { votes } vote{ votes !== 1 && 's' }</p>
+  );
+}
+
+/**
+ * Display a section with the most voted anecdote.
+ * @param {{number, string, number}} props 
+ * @returns 
+ */
+const AnecdoteMostVoted = ( {points, quote, votes} ) => {
+  if ( !points.some( point => point > 0) ) {
+    return (
+      <>
+        <Title text = 'Anecdote with most votes' />
+        <p>No votes given</p>
+      </>
+    );
+  }
+  
+  return (
+    <>
+      <Title text = 'Anecdote with most votes' />
+      <Quotation quote = { quote } />
+      <VotesLegend votes = { votes } />
+    </>
+  );
+}
+
 function App() {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -34,12 +72,29 @@ function App() {
     setPoints(copyOfPoints);
   }
 
+  const getGreatestValue    = () => points.toSorted( (a, b) => b-a ).at(0);
+
+  const getIndexOfMostVoted = () => points.findIndex( point => point === getGreatestValue() );
+
   return (
     <>
-      <p>{ anecdotes[selected] }</p>
-      <p>This anecdote has { points[selected] } votes</p>
-      <button onClick={ handleVoteClick }>Vote</button>
-      <button onClick={ handleNextAnecdoteClick }>Next anecdote</button>
+      <Header text = 'Anecdotes from Software Engieneers' />
+      <Title text = 'Anecdote of the day' />
+      <Quotation quote = { anecdotes[selected] } />
+      <VotesLegend votes = { points[selected] } />
+      <Button 
+        onClick = { handleVoteClick } 
+        text    = 'Vote' 
+      />
+      <Button 
+        onClick = { handleNextAnecdoteClick } 
+        text    = 'Next anecdote' 
+      />
+      <AnecdoteMostVoted 
+        points = {[...points]}
+        quote  = { anecdotes[getIndexOfMostVoted()] }
+        votes  = { getGreatestValue() }
+      />
     </>
   );
 }
