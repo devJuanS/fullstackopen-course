@@ -8,17 +8,24 @@ function App() {
 
   const addName = ( event ) => {
     event.preventDefault();
+    
+    const existNameInPersons = persons.some( person => person.name === newName.trim() );
+
+    if ( existNameInPersons ) {
+      alert(`${ newName } is already added to phonebook`);
+      setNewName('');
+      return;
+    }
+
     const personObject = {
       name: newName,
-    }
+    };
+
     setPersons( persons.concat( personObject ) );
     setNewName('');
   }
 
-  const handleNameChange = ( event ) => {
-    console.log(event.target.value);
-    setNewName( event.target.value );
-  }
+  const handleNameChange = ( event ) => setNewName( event.target.value );
 
   return (
     <>
