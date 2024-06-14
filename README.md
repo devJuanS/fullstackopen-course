@@ -34,21 +34,22 @@ The course materials is written by:
 
 ## Exercise Solutions 🗃️
 
-### Part 0 - Fundamentals of Web apps
+### [Part 0 - Fundamentals of Web apps](/part-00/)
 
 - [0.4: New note diagram](/part-00/00_4_new-note-diagram.md)
 - [0.5: Single page app diagram](/part-00/00_5_spa-diagram.md)
 - [0.6: New note in Single page app diagram](/part-00/00_6_new-note-spa.diagram.md)
 
-## Part 1 - Introduction to React
+## [Part 1 - Introduction to React](/part-01/)
 
 - [Course Information](/part-01/course-info/)
 - [Unicafe](/part-01/unicafe)
 - [Anecdotes from Software Engieneers](/part-01/anecdotes/)
 
-## Part 2 - Communicating with server
+## [Part 2 - Communicating with server](/part-02/)
 
 - [Course Information](/part-02/course-info/)
+- [The Phonebook](/part-02/phonebook/)
 
 
 

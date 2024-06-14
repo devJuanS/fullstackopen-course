@@ -6,10 +6,14 @@ This part is to continue the introduction to React, taking a look at how to rend
 
 ### Exercises
 
-[Course Information](/part-02/course-info/)
+#### [Course Information](/part-02/course-info/)
 
 1. Step 6: Change the [course-info app](/part-01/course-info/) from part 1 to render the parts collection.
 2. Step 7: Show the sum of the exercises of the course.
 3. Step 8: Calculate the sum of exercises using the method `reduce`.
 4. Step 9: Extend the application to allow for an arbitrary number of courses.
 5. Step 10: Separate module for the component `course`.
+
+#### [The Phonebook](/part-02/phonebook/)
+
+1. Step 1: Create a simple phonebook using the `form` HTML element.
