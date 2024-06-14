@@ -46,6 +46,10 @@ The course materials is written by:
 - [Unicafe](/part-01/unicafe)
 - [Anecdotes from Software Engieneers](/part-01/anecdotes/)
 
+## Part 2 - Communicating with server
+
+- [Course Information](/part-02/course-info/)
+
 
 
 ## The Learner 👨🏽‍💻
