@@ -18,3 +18,4 @@ This part is to continue the introduction to React, taking a look at how to rend
 
 1. Step 1: Create a simple phonebook using the `form` HTML element.
 2. Step 2: Prevent user to add a duplicated name.
+3. Step 3: Allowing users to add phone numbers to the phone book.

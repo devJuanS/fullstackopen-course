@@ -7,3 +7,7 @@
 ## Step 2: Prevent user to add a duplicated name.
 
 **Goal**: Issue a warning with the `alert` command when an existing name is submitted.
+
+## Step 3: Allowing users to add phone numbers to the phone book.
+
+**Goal**: Add a second input element to add phone numbers.
