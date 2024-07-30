@@ -11,3 +11,7 @@
 ## Step 3: Allowing users to add phone numbers to the phone book.
 
 **Goal**: Add a second input element to add phone numbers.
+
+## Step 4: Search field to filter by name.
+
+**Goal**: Implement a search field that can be used to filter the list of people by name.
