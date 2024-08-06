@@ -15,3 +15,7 @@
 ## Step 4: Search field to filter by name.
 
 **Goal**: Implement a search field that can be used to filter the list of people by name.
+
+## Step 5: Refactor the App in various single components.
+
+**Goal**: Refactor the App by extracting suitable parts into new components. Maintain the application's state and all event handlers in the App root component.

@@ -1,5 +1,77 @@
 import { useState } from 'react';
 
+/**
+ * Filter component to show names according the entered value. 
+ * @param {props} filterName Value to be filtered
+ * @param {props} onChange   Handle function for the input control
+ * @returns React component
+ */
+const Filter = ( {filterName, onChange} ) => {
+  
+  return (
+    <>
+      <div>
+        Filter shown with 
+        <input 
+          type     = "text" 
+          value    = { filterName }
+          onChange = { onChange }
+        />
+      </div>
+    </>
+  );
+}
+
+/**
+ * Form component to add a new phone number.
+ * @param {*} props Value and handle function for the name and phone number controls.
+ * @returns React component
+ */
+const PersonForm = ( props ) => {
+  
+  return (
+    <>
+      <form onSubmit = { props.onSubmit }>
+        <div>
+          Name: 
+          <input 
+            value    = { props.inputNameValue } 
+            onChange = { props.onChangeName }
+          />
+        </div>
+        <div>
+          Phone number: 
+          <input 
+            type     = "text"
+            value    = { props.inputNumberValue }
+            onChange = { props.onChangeNumber } 
+          />
+        </div>
+        <div>
+          <button type='submit'>Add</button>
+        </div>
+      </form>
+    </>
+  );
+}
+
+/**
+ * Component to render the phone number list.
+ * @param {Array<Object>} personsList 
+ * @returns React component
+ */
+const Persons = ( {personsList} ) => {
+  return (
+    <>
+      {
+        personsList.map( person => 
+          <div key = {person.id}>{ person.name } - { person.number }</div>
+        )
+      }
+    </>
+  );
+}
+
 function App() {
   const [persons, setPersons]       = useState([
     { name: 'Arto Hellas',      number: '040-123456',    id: 1 },
@@ -77,41 +149,23 @@ function App() {
     <>
       <div>
         <h2>Phonebook</h2>
-          <div>
-            Filter shown with 
-            <input 
-              type="text" 
-              value={ filterName }
-              onChange={ handleFilterChange }
-            />
-          </div>
-        <form onSubmit={ addPerson }>
-          <h2>Add new person</h2>
-          <div>
-            Name: 
-            <input 
-              value    = { newName } 
-              onChange = { handleNameChange }
-            />
-          </div>
-          <div>
-            Phone number: 
-            <input 
-              type     = "text"
-              value    = { newNumber }
-              onChange = { handleNumberChange } 
-            />
-          </div>
-          <div>
-            <button type='submit'>Add</button>
-          </div>
-        </form>
-        <h2>Numbers</h2>
-        {
-          personsToShow.map( person => 
-            <div key = {person.id}>{ person.name } - { person.number }</div>
-          )
-        }
+        
+        <Filter 
+          filterName = { filterName }
+          onChange = { handleFilterChange }
+        />
+
+        <h3>Add new person</h3>
+        <PersonForm 
+          onSubmit         = { addPerson }
+          inputNameValue   = { newName } 
+          onChangeName     = { handleNameChange }
+          inputNumberValue = { newNumber }
+          onChangeNumber   = { handleNumberChange }
+        />
+
+        <h3>Numbers</h3>
+        <Persons personsList = { personsToShow } />
       </div>
     </>
   );
