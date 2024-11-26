@@ -19,3 +19,7 @@
 ## Step 5: Refactor the App in various single components.
 
 **Goal**: Refactor the App by extracting suitable parts into new components. Maintain the application's state and all event handlers in the App root component.
+
+## Step 6: Fetching the data from the server using the `axios`-library.
+
+**Goal**: Modify the application such that the initial state of the data is fetched from the server using the `axios`-library. Complete the fetching with an Effect hook.
