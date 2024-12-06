@@ -22,3 +22,4 @@ This part is to continue the introduction to React, taking a look at how to rend
 4. Step 4: Search field to filter by name.
 5. Step 5: Refactor the App in various single components.
 6. Step 6: Fetching the data from the server using the `axios`-library.
+7. Step 7: Saving the new person to the server using the `axios`-library.

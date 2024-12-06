@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const baseURL = 'http://localhost:3001/persons';
+
 /**
  * Filter component to show names according the entered value. 
  * @param {props} filterName Value to be filtered
@@ -84,7 +86,7 @@ function App() {
    */
   useEffect(() => {
     axios
-        .get('http://localhost:3001/persons')
+        .get(baseURL)
         .then( response => setPersons(response.data) )
   }, []);
   
@@ -115,12 +117,16 @@ function App() {
     }
 
     const personObject = {
+      id: persons.length + 1,
       name: newName,
       number: newNumber,
-      id: persons.length + 1,
     };
 
-    setPersons( persons.concat( personObject ) );
+    // saving new person in server
+    axios
+      .post( baseURL, personObject )
+      .then( response => setPersons( persons.concat(response.data) ) );
+
     setNewName('');
     setNewNumber('');
   }

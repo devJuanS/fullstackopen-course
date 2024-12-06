@@ -23,3 +23,7 @@
 ## Step 6: Fetching the data from the server using the `axios`-library.
 
 **Goal**: Modify the application such that the initial state of the data is fetched from the server using the `axios`-library. Complete the fetching with an Effect hook.
+
+## Step 7: Saving the new person to the server using the `axios`-library.
+
+**Goal**: Update the application to include for the function `addPerson` the feature to save that in the server using the `axios`-library.
