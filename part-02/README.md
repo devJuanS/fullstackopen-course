@@ -24,3 +24,4 @@ This part is to continue the introduction to React, taking a look at how to rend
 6. Step 6: Fetching the data from the server using the `axios`-library.
 7. Step 7: Saving the new person to the server using the `axios`-library.
 8. Step 8: Extracting the code that handles the communication with the backend into its own module.
+9. Step 9: Deleting entries from the phonebook.

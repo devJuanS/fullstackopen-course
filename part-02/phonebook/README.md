@@ -31,3 +31,7 @@
 ## Step 8: Extracting the code that handles the communication with the backend into its own module.
 
 **Goal**: Create a service module with the methods to handle the communication CRUD with the backed server.
+
+## Step 9: Deleting entries from the phonebook.
+
+**Goal**: Make it possible for users to delete entries from the phonebook.

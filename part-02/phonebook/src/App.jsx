@@ -61,12 +61,15 @@ const PersonForm = ( props ) => {
  * @param {Array<Object>} personsList 
  * @returns React component
  */
-const Persons = ( {personsList} ) => {
+const Persons = ( {personsList, deleteEntry} ) => {
   return (
     <>
       {
-        personsList.map( person => 
-          <div key = {person.id}>{ person.name } - { person.number }</div>
+        personsList.map( person =>
+          <div key = {person.id}>
+            { person.name } - { person.number }
+            <button key = {person.id} onClick={ () => deleteEntry(person.id, person.name) }>◀ delete</button>
+          </div>
         )
       }
     </>
@@ -115,7 +118,7 @@ function App() {
     }
 
     const personObject = {
-      id: persons.length + 1,
+      id: (persons.length + 1).toString(),
       name: newName,
       number: newNumber,
     };
@@ -127,6 +130,24 @@ function App() {
 
     setNewName('');
     setNewNumber('');
+  }
+
+  /**
+   * Remove a person entry in the server
+   * @param {String|Number} id 
+   * @param {String} name 
+   */
+  const deletePerson = ( id, name ) => {
+    const confirmDelete = window.confirm(`Are you sure to delete ${ name }?`);
+
+    if( ! confirmDelete ) return;
+    phonebookService
+      .deleteEntry( id )
+      .then( deletedEntry => console.log(deletedEntry) );
+    
+    phonebookService
+      .getAll()
+      .then( initialData => setPersons( initialData) );
   }
 
   /**
@@ -174,7 +195,10 @@ function App() {
         />
 
         <h3>Numbers</h3>
-        <Persons personsList = { personsToShow } />
+        <Persons 
+          personsList = { personsToShow } 
+          deleteEntry = { deletePerson }
+        />
       </div>
     </>
   );

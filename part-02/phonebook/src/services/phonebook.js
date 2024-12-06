@@ -21,4 +21,14 @@ const getAll = () => {
   return request.then( res => res.data );
 }
 
-export default { create, getAll, };
+/**
+ * Delete a person entry in the backend server
+ * @param {String | Number} id 
+ * @returns {Promise<Object>} data from the deleted entry
+ */
+const deleteEntry = ( id ) => {
+  const request = axios.delete(`${ baseURL }/${ id }`);
+  return request.then( res => res.data );
+}
+
+export default { create, getAll, deleteEntry, };
