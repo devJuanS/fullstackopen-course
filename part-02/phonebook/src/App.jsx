@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-
-const baseURL = 'http://localhost:3001/persons';
+import phonebookService from './services/phonebook';
 
 /**
  * Filter component to show names according the entered value. 
@@ -85,9 +83,9 @@ function App() {
    * Fetching data from db.json using the axios-library and completing it with a Effect hook
    */
   useEffect(() => {
-    axios
-        .get(baseURL)
-        .then( response => setPersons(response.data) )
+    phonebookService
+      .getAll()
+      .then( initialData => setPersons( initialData) );
   }, []);
   
   /**
@@ -123,9 +121,9 @@ function App() {
     };
 
     // saving new person in server
-    axios
-      .post( baseURL, personObject )
-      .then( response => setPersons( persons.concat(response.data) ) );
+    phonebookService
+      .create( personObject )
+      .then( createdPerson => setPersons( persons.concat( createdPerson )));
 
     setNewName('');
     setNewNumber('');

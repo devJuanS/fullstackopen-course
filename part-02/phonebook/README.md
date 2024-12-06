@@ -27,3 +27,7 @@
 ## Step 7: Saving the new person to the server using the `axios`-library.
 
 **Goal**: Update the application to include for the function `addPerson` the feature to save that in the server using the `axios`-library.
+
+## Step 8: Extracting the code that handles the communication with the backend into its own module.
+
+**Goal**: Create a service module with the methods to handle the communication CRUD with the backed server.
