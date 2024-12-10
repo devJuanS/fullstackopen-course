@@ -35,3 +35,7 @@
 ## Step 9: Deleting entries from the phonebook.
 
 **Goal**: Make it possible for users to delete entries from the phonebook.
+
+## Step 10: Replacing the number for an existing person using the HTTP PUT method.
+
+**Goal**: Change the functionality so that if a number is added to an already existing user, the new number will replace the old number using the HTTP PUT method.

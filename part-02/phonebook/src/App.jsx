@@ -111,7 +111,11 @@ function App() {
     const existNameInPersons = persons.some( person => person.name === newName.trim() );
 
     if ( existNameInPersons ) {
-      alert(`${ newName } is already added to phonebook`);
+      const confirmReplaceNumber = window.confirm(`${ newName } is already added to phonebook. Do you want to replace the old number with a new one?`);
+      if( confirmReplaceNumber ) {
+        const personToUpdate = persons.find( person => person.name === newName.trim() );
+        updatePerson({ ...personToUpdate, number: newNumber });
+      }
       setNewName('');
       setNewNumber('');
       return;
@@ -133,6 +137,20 @@ function App() {
   }
 
   /**
+   * Update the data from a person in the backend server
+   * @param {Object} person data from the person to be updated
+   */
+  const updatePerson = ( person ) => {
+    console.log('updating person: ', person);
+    phonebookService
+      .update( person )
+      .then( updatedPerson => {
+        console.log('Person updated:', updatedPerson);
+        setPersons( persons.map( person => person.id === updatedPerson.id ? updatedPerson : person ) );
+      });
+  }
+
+  /**
    * Remove a person entry in the server
    * @param {String|Number} id 
    * @param {String} name 
@@ -143,11 +161,10 @@ function App() {
     if( ! confirmDelete ) return;
     phonebookService
       .deleteEntry( id )
-      .then( deletedEntry => console.log(deletedEntry) );
-    
-    phonebookService
-      .getAll()
-      .then( initialData => setPersons( initialData) );
+      .then( deletedPerson => {
+        console.log('Person deleted: ', deletedPerson);
+        setPersons( persons.filter( person => person.id !== deletedPerson.id) );
+      });
   }
 
   /**
