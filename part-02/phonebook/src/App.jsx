@@ -76,11 +76,39 @@ const Persons = ( {personsList, deleteEntry} ) => {
   );
 }
 
+/**
+ * Component to render a notification message
+ * @param {String} message 
+ * @returns React component
+ */
+const Notification = ( { message } ) => {
+  const notificationStyle = {
+    marginBottom: 12,
+    padding: 8,
+    color: 'green',
+    fontSize: 20,
+    backgroundColor: 'lightgrey',
+    borderStyle: 'solid',
+    borderWidth: 2,
+    borderColor: 'green',
+    borderRadius: 8
+  };
+
+  if( message === null ) return null;
+
+  return (
+    <div style={ notificationStyle }>
+      { message }
+    </div>
+  );
+}
+
 function App() {
-  const [persons, setPersons]       = useState([]);
-  const [newName, setNewName]       = useState(''),
-        [newNumber, setNewNumber]   = useState(''),
-        [filterName, setFilterName] = useState('');
+  const [persons, setPersons]               = useState([]);
+  const [newName, setNewName]               = useState('');
+  const [newNumber, setNewNumber]           = useState('');
+  const [filterName, setFilterName]         = useState('');
+  const [successMessage, setSuccessMessage] = useState(null);
 
   /**
    * Fetching data from db.json using the axios-library and completing it with a Effect hook
@@ -130,7 +158,10 @@ function App() {
     // saving new person in server
     phonebookService
       .create( personObject )
-      .then( createdPerson => setPersons( persons.concat( createdPerson )));
+      .then( createdPerson => {
+        setNotificationMessageToShow(`Added ${ createdPerson.name }.`);
+        setPersons( persons.concat( createdPerson ))
+      });
 
     setNewName('');
     setNewNumber('');
@@ -141,11 +172,11 @@ function App() {
    * @param {Object} person data from the person to be updated
    */
   const updatePerson = ( person ) => {
-    console.log('updating person: ', person);
     phonebookService
       .update( person )
       .then( updatedPerson => {
         console.log('Person updated:', updatedPerson);
+        setNotificationMessageToShow(`Updated number for ${ updatedPerson.name }.`);
         setPersons( persons.map( person => person.id === updatedPerson.id ? updatedPerson : person ) );
       });
   }
@@ -163,8 +194,18 @@ function App() {
       .deleteEntry( id )
       .then( deletedPerson => {
         console.log('Person deleted: ', deletedPerson);
+        setNotificationMessageToShow(`Deleted ${ deletedPerson.name }.`);
         setPersons( persons.filter( person => person.id !== deletedPerson.id) );
       });
+  }
+
+  /**
+   * Set the notification message in the state to show temporary
+   * @param {String} message 
+   */
+  const setNotificationMessageToShow = ( message ) => {
+    setSuccessMessage(message);
+    setTimeout(() => setSuccessMessage(null), 5000);
   }
 
   /**
@@ -196,7 +237,7 @@ function App() {
     <>
       <div>
         <h2>Phonebook</h2>
-        
+        <Notification message={ successMessage } />
         <Filter 
           filterName = { filterName }
           onChange = { handleFilterChange }

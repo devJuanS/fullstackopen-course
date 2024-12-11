@@ -39,3 +39,7 @@
 ## Step 10: Replacing the number for an existing person using the HTTP PUT method.
 
 **Goal**: Change the functionality so that if a number is added to an already existing user, the new number will replace the old number using the HTTP PUT method.
+
+## Step 11: Showing a notification message after a successful operation.
+
+**Goal**: Add a component than display a temporary notification after a successful operation (a person is added or a number is changed), and stylize it.

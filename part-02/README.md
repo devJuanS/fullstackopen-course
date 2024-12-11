@@ -25,3 +25,5 @@ This part is to continue the introduction to React, taking a look at how to rend
 7. Step 7: Saving the new person to the server using the `axios`-library.
 8. Step 8: Extracting the code that handles the communication with the backend into its own module.
 9. Step 9: Deleting entries from the phonebook.
+10. Step 10: Replacing the number for an existing person using the HTTP PUT method.
+11. Step 11: Showing a notification message after a successful operation.
