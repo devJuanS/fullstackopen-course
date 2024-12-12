@@ -43,3 +43,7 @@
 ## Step 11: Showing a notification message after a successful operation.
 
 **Goal**: Add a component than display a temporary notification after a successful operation (a person is added or a number is changed), and stylize it.
+
+## Step 12: Handling the errors in operations and showing an error notification message.
+
+**Goal**: Handle promise errors when the operations do not succeed with backend server.

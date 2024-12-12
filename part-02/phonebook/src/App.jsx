@@ -78,19 +78,21 @@ const Persons = ( {personsList, deleteEntry} ) => {
 
 /**
  * Component to render a notification message
+ * @param {Boolean} isErrorMessage true if the notification is due to an error
  * @param {String} message 
  * @returns React component
  */
-const Notification = ( { message } ) => {
+const Notification = ( { isErrorMessage, message } ) => {
+  const notificationColor = isErrorMessage ? 'red' : 'green';
   const notificationStyle = {
     marginBottom: 12,
     padding: 8,
-    color: 'green',
+    color: notificationColor,
     fontSize: 20,
     backgroundColor: 'lightgrey',
     borderStyle: 'solid',
     borderWidth: 2,
-    borderColor: 'green',
+    borderColor: notificationColor,
     borderRadius: 8
   };
 
@@ -109,6 +111,9 @@ function App() {
   const [newNumber, setNewNumber]           = useState('');
   const [filterName, setFilterName]         = useState('');
   const [successMessage, setSuccessMessage] = useState(null);
+  const [errorMessage, setErrorMessage]     = useState(null);
+
+  const AXIOS_ERR_NETWORK_CODE = 'ERR_NETWORK';
 
   /**
    * Fetching data from db.json using the axios-library and completing it with a Effect hook
@@ -116,7 +121,12 @@ function App() {
   useEffect(() => {
     phonebookService
       .getAll()
-      .then( initialData => setPersons( initialData) );
+      .then( initialData => setPersons( initialData) )
+      .catch( error => {
+        if( error.code === AXIOS_ERR_NETWORK_CODE ) {
+          setNotificationMessageToShow(true, 'Unsuccessful connection with server.');
+        }
+      });
   }, []);
   
   /**
@@ -159,8 +169,13 @@ function App() {
     phonebookService
       .create( personObject )
       .then( createdPerson => {
-        setNotificationMessageToShow(`Added ${ createdPerson.name }.`);
+        setNotificationMessageToShow(false, `Added ${ createdPerson.name }.`);
         setPersons( persons.concat( createdPerson ))
+      })
+      .catch( error => {
+        if( error.code === AXIOS_ERR_NETWORK_CODE ) {
+          setNotificationMessageToShow(true, 'Unsuccessful connection with server.');
+        }
       });
 
     setNewName('');
@@ -176,8 +191,17 @@ function App() {
       .update( person )
       .then( updatedPerson => {
         console.log('Person updated:', updatedPerson);
-        setNotificationMessageToShow(`Updated number for ${ updatedPerson.name }.`);
+        setNotificationMessageToShow(false, `Updated number for ${ updatedPerson.name }.`);
         setPersons( persons.map( person => person.id === updatedPerson.id ? updatedPerson : person ) );
+      })
+      .catch(error => {
+        if( error.code === AXIOS_ERR_NETWORK_CODE ) {
+          setNotificationMessageToShow(true, 'Unsuccessful connection with server.');
+        }
+        if( error.status === 404 ) {
+          setNotificationMessageToShow(true, `The person ${ person.name } has already been removed from server.`);
+          setPersons( persons.filter( p => p.id !== person.id) );
+        }
       });
   }
 
@@ -194,16 +218,31 @@ function App() {
       .deleteEntry( id )
       .then( deletedPerson => {
         console.log('Person deleted: ', deletedPerson);
-        setNotificationMessageToShow(`Deleted ${ deletedPerson.name }.`);
+        setNotificationMessageToShow(false, `Deleted ${ deletedPerson.name }.`);
         setPersons( persons.filter( person => person.id !== deletedPerson.id) );
+      })
+      .catch(error => {
+        if( error.code === AXIOS_ERR_NETWORK_CODE ) {
+          setNotificationMessageToShow(true, 'Unsuccessful connection with server.');
+        }
+        if( error.status === 404 ) {
+          setNotificationMessageToShow(true, `The person ${ name } has already been removed from server.`);
+          setPersons( persons.filter( person => person.id !== id) );
+        }
       });
   }
 
   /**
-   * Set the notification message in the state to show temporary
+   * Set the notification message in the corresponing state to show temporary
+   * @param {Boolean} isErrorMessage true if the notification is due to an error
    * @param {String} message 
    */
-  const setNotificationMessageToShow = ( message ) => {
+  const setNotificationMessageToShow = ( isErrorMessage, message ) => {
+    if( isErrorMessage ) {
+      setErrorMessage(message);
+      setTimeout(()=> setErrorMessage(null), 5000);
+      return;
+    }
     setSuccessMessage(message);
     setTimeout(() => setSuccessMessage(null), 5000);
   }
@@ -237,7 +276,14 @@ function App() {
     <>
       <div>
         <h2>Phonebook</h2>
-        <Notification message={ successMessage } />
+        <Notification 
+          isErrorMessage={ false }
+          message={ successMessage }
+        />
+        <Notification 
+          isErrorMessage={ true }
+          message={ errorMessage }
+        />
         <Filter 
           filterName = { filterName }
           onChange = { handleFilterChange }
