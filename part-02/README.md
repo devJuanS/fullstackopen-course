@@ -28,3 +28,7 @@ This part is to continue the introduction to React, taking a look at how to rend
 10. Step 10: Replacing the number for an existing person using the HTTP PUT method.
 11. Step 11: Showing a notification message after a successful operation.
 12. Step 12: Handling the errors in operations and showing an error notification message.
+
+### [Data for countries](/part-02/countries/)
+
+1. Step 1: Make an application that allows to view information from different countries.

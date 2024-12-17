@@ -50,6 +50,7 @@ The course materials is written by:
 
 - [Course Information](/part-02/course-info/)
 - [The Phonebook](/part-02/phonebook/)
+- [Data for countries](/part-02/countries)
 
 
 
