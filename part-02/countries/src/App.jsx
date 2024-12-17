@@ -4,10 +4,10 @@ import remoteCountryToModels from "./mappers/remote-country.mapper";
 
 const baseUrl = 'https://studies.cs.helsinki.fi/restcountries/api/';
 const SHOW_COUNTRIES_LIMIT        = 10;
-const NOT_FOUND_COUNTRY_CODE      = -1;
-const TOO_MANY_MATCHES_CODE       =  0;
-const SHOW_COUNTRY_INFO_CODE      =  1;
-const SHOW_LIST_OF_COUNTRIES_CODE =  2;
+// const NOT_FOUND_COUNTRY_CODE      = -1;
+// const TOO_MANY_MATCHES_CODE       =  0;
+// const SHOW_COUNTRY_INFO_CODE      =  1;
+// const SHOW_LIST_OF_COUNTRIES_CODE =  2;
 
 /**
  * Filter component to show countries according the entered value. 
@@ -65,20 +65,49 @@ const Notification = ( { isErrorMessage, message } ) => {
 }
 
 /**
+ * Component to render a list item to show/hide country information
+ * @param {Object<Country>} country data for a country 
+ * @returns 
+ */
+const CountryItem = ( {country} ) => {
+  const [show, setShow] = useState(false);
+
+  /**
+   * Event handler to change the show state when click is pressed
+   */
+  const handleClick = () => setShow( !show );
+
+  return (
+    <>
+      <li>
+        { country.name }
+        <button onClick={ handleClick }>◀ { !show ? 'Show' : 'Hide' }</button>
+        {show && <RenderCountryInfo countryInfo = { country } />}
+      </li>
+    </>
+  );
+}
+
+/**
  * Component to render a list
  * @param {String} label text to render before the list
  * @param {Array<String>} list
  * @returns 
  */
-const RenderList = ({ label, list }) => {
-  if( !list.length ) return null;
+const RenderCountryList = ({ countries }) => {
+  if( !countries.length ) return null;
 
   return (
     <>
-      <p>{ label }:</p>
+      <p>Countries matches:</p>
       <ul>
         { 
-          list.map( (item, index) => <li key={ index }>{ item }</li>)
+          countries.map( (country, index) => 
+            <CountryItem 
+              key     = { index }
+              country = { country } 
+            />
+          )
         }
       </ul>
     </>
@@ -111,37 +140,43 @@ const RenderCountryInfo = ( {countryInfo} ) => {
 }
 
 /**
- * Component to render based on type of content
- * @param {Object} data content type to render and content itself
+ * Component to render content based on the filter search
+ * @param {Array<Country>} countries data for the countries from backend
+ * @param {string} filterValue filter to apply to the search
  * @returns React component
  */
-const SearchResult = ( {data} ) => {
-  if( data === null ) return null;
-  if( data.contentType === NOT_FOUND_COUNTRY_CODE ) {
+const SearchResult = ( {countries, filterValue} ) => {
+  if( countries === null || !countries.length ) return null;
+  if( !filterValue.length ) return null;
+
+  const filteredCountries = countries.filter( country => country.name.toLowerCase().includes(filterValue.toLowerCase()) );
+  
+  if( !filteredCountries.length ) {
+    console.log('error',filteredCountries.length, filterValue);
     return (
       <Notification 
-        isErrorMessage = { true }
-        message        = { data.content } 
+      isErrorMessage = { true }
+      message        = { `Country matches with ${ filterValue } was not found!` } 
       />
     );
   }
-  if( data.contentType === TOO_MANY_MATCHES_CODE ) {
+  if( filteredCountries.length > SHOW_COUNTRIES_LIMIT ) {
     return (
-        <Notification 
-          isErrorMessage = { false }
-          message        = { data.content } 
-        />
-    );
-  }
-  if( data.contentType === SHOW_LIST_OF_COUNTRIES_CODE ) {
-    return (
-      <RenderList 
-        label = { 'Countries matches: ' }
-        list  = { data.content }
+      <Notification 
+      isErrorMessage = { false }
+      message        = { 'Too many matches, specify another filter.' } 
       />
     );
   }
-  return (<RenderCountryInfo countryInfo = { data.content } />);
+  if( filteredCountries.length === 1 ) {
+    return ( <RenderCountryInfo countryInfo = { filteredCountries[0] } /> );
+  }
+  
+  return (
+    <RenderCountryList 
+        countries = { filteredCountries }
+    />
+  );
 }
 
 function App() {
@@ -156,47 +191,6 @@ function App() {
       });
   }, []);
 
-  /**
-   * Search the country that matches with the filter
-   */
-  const searchCountry = () => {
-    const countriesFound = countriesData.filter( country => country.name.toLowerCase().includes(filterCountry.toLowerCase()) );
-
-    if( !countriesFound.length ) {
-      return (
-        {
-          contentType: NOT_FOUND_COUNTRY_CODE, 
-          content: `Country matches with ${ filterCountry } was not found!`
-        }
-      );
-    }
-    if( countriesFound.length > SHOW_COUNTRIES_LIMIT ) {
-      return (
-        {
-          contentType: TOO_MANY_MATCHES_CODE, 
-          content: 'Too many matches, specify another filter.'
-        }
-      );
-    }
-    if( countriesFound.length > 1  ) {
-      return (
-        {
-          contentType: SHOW_LIST_OF_COUNTRIES_CODE, 
-          content: countriesFound.map( country => country.name )
-        }
-      );
-    }
-
-    const countryInfo = countriesFound[0];
-    return (
-      {
-        contentType: SHOW_COUNTRY_INFO_CODE, 
-        content: countryInfo
-      }
-    );
-  }
-
-  const dataToShow = !filterCountry ? null : searchCountry();
    /**
    * Event handler to synchronizes the changes made to the input with the component's state
    * @param {HTMLInputElement} event
@@ -211,7 +205,10 @@ function App() {
         filterName  = { filterCountry }
         onChange    = { handleFilterChange }
       />
-      <SearchResult data = { dataToShow } />
+      <SearchResult 
+        countries   = { countriesData } 
+        filterValue = { filterCountry }
+      />
     </>
   )
 }

@@ -32,3 +32,4 @@ This part is to continue the introduction to React, taking a look at how to rend
 ### [Data for countries](/part-02/countries/)
 
 1. Step 1: Make an application that allows to view information from different countries.
+2. Step 2: Add a button when the names of multiple countries are shown to display the country information.
