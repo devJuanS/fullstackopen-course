@@ -1,6 +1,6 @@
 
 /**
- * Class that represent a Country based on information in the backend
+ * Class that represent the Country data model based on information in the backend.
  */
 export class Country {
   

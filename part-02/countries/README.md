@@ -9,3 +9,7 @@ Application that allows to view information from different countries whose data 
 ## Step 2: Add a button when the names of multiple countries are shown to display the country information.
 
 **Goal**: Diplay through a button the information for a country into the list when multiple countries are shown.
+
+## Step 3: Add the weather report for the capital of a country in the single country view.
+
+**Goal**: Add to the view showing the data of a single country, the weather report for the capital of that country.

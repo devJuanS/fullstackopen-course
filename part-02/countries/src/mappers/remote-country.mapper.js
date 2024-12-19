@@ -1,7 +1,7 @@
 import { Country } from '../models/country';
 
 /**
- * Translate the data defined from backend side into Country model.
+ * Translate the data how are defined in the backend side into frontend Country model.
  * @param {Object} remoteCountry data with variables defined by backend side
  * @returns {Like<Country>}
  */
