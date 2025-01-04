@@ -6,7 +6,7 @@ The course covers testing, configuration and environment management, the use of 
 
 <div align="right">
 
-*[>> Information about the course](https://fullstackopen.com/en/about)*
+_[>> Information about the course](https://fullstackopen.com/en/about)_
 
 </div>
 
@@ -22,7 +22,8 @@ I am going to learn in this course:
 
 ## Course Authors ✒️
 
-The course materials is written by: 
+The course materials is written by:
+
 - [Matti Luukkainen](https://github.com/mluukkai)
 - [Developers from Terveystalo](https://www.terveystalo.com/fi/Yritystietoa/Terveystalo-tyontantajana/Digital-Health/)
 - [Kalle Ilves](https://github.com/Kaltsoon)
@@ -52,7 +53,9 @@ The course materials is written by:
 - [The Phonebook](/part-02/phonebook/)
 - [Data for countries](/part-02/countries)
 
+## [Part 3 - Programming a server with NodeJS and Express](/part-03)
 
+- [The Phonebook Backend](/part-03/phonebook/)
 
 ## The Learner 👨🏽‍💻
 
