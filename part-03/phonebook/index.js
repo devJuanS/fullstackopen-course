@@ -34,6 +34,19 @@ app.get('/api/persons', (request, response) => {
   response.json( persons );
 });
 
+// route to get the information for a single entry
+app.get('/api/persons/:id', (request, response) => {
+  const id = request.params.id;
+  const personEntry = persons.find( person => person.id === id);
+
+  if( personEntry ) {
+    response.json( personEntry );
+  } else {
+    response.statusMessage = `Person with id ${ id } was not found.`;
+    response.status(400).end();
+  }
+});
+
 // route to an info page
 app.get('/info', (request, response) => {
   const numberOfEntries = persons.length;
