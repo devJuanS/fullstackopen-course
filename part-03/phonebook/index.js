@@ -1,6 +1,9 @@
 const express = require("express");
 const app     = express();
 
+// To access the data easily, using Express json-parser
+app.use( express.json() );
+
 let persons = [
   { 
     "id": "1",
@@ -47,12 +50,35 @@ app.get('/api/persons/:id', (request, response) => {
   }
 });
 
-// route to delete a single entry
+// route to delete a single entry in persons variable
 app.delete('/api/persons/:id', (request, response) => {
   const id = request.params.id;
 
   persons = persons.filter( person => person.id !== id );
   response.status(204).end();
+});
+
+/**
+ * Generate an id number
+ * @returns {String} random Id
+ */
+const generateId = () => {
+  const randomId = Math.floor( Math.random() * 1000 );
+
+  return String( randomId );
+}
+
+// route to add a new entry in persons variable
+app.post('/api/persons', (request, response) => {
+  const body   = request.body;
+  const person = {
+    id: generateId(),
+    name: body.name,
+    number: body.number,
+  };
+
+  persons = persons.concat( person );
+  response.json( person );
 });
 
 // route to an info page

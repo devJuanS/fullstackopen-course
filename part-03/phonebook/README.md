@@ -15,3 +15,7 @@
 ## Step 4: Implement functionality that makes it possible to delete a single phonebook entry.
 
 **Goal**: Add the functionality to delete a single phonebook entry by making an HTTP DELETE request to the unique URL of that phonebook entry.
+
+## Step 5: Expand the backend so that new phonebook entries can be added.
+
+**Goal**: Include the functionality to add a new phonebook entry by making HTTP POST request.
