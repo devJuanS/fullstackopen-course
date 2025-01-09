@@ -19,3 +19,7 @@
 ## Step 5: Expand the backend so that new phonebook entries can be added.
 
 **Goal**: Include the functionality to add a new phonebook entry by making HTTP POST request.
+
+## Step 6: Implement error handling for creating new entries.
+
+**Goal**: Implement error handling for creating new entries. The request is not allowed to succeed, if: the name or number is missing, or the name already exists in the phonebook.
