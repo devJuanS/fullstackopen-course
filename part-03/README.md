@@ -9,3 +9,4 @@ In this part the focus shifts towards the backend, implementing a simple REST AP
 #### [The Phonebook Backend](/part-03/phonebook/)
 
 1. Step 1: Implement a Node application that returns a hardcoded list of phonebook entries.
+2. Step 2: Implement an info page showing the number of entries in the phonebook and the time of the request.

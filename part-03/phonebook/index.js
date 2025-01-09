@@ -34,6 +34,17 @@ app.get('/api/persons', (request, response) => {
   response.json( persons );
 });
 
+// route to an info page
+app.get('/info', (request, response) => {
+  const numberOfEntries = persons.length;
+  const requestDate     = new Date().toString();
+
+  response.send(`
+    <p>Phonebook has info for ${ numberOfEntries + (numberOfEntries === 1 ? ' person' : ' people') }.</p>
+    <p>${ requestDate }</p>
+  `);
+});
+
 // setup of listen port for the server
 const PORT = 3001;
 app.listen(PORT, () => {
