@@ -11,3 +11,4 @@ In this part the focus shifts towards the backend, implementing a simple REST AP
 1. Step 1: Implement a Node application that returns a hardcoded list of phonebook entries.
 2. Step 2: Implement an info page showing the number of entries in the phonebook and the time of the request.
 3. Step 3: Implement the functionality for displaying the information for a single phonebook entry.
+4. Step 4: Implement functionality that makes it possible to delete a single phonebook entry.
