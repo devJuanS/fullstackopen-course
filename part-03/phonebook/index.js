@@ -1,5 +1,11 @@
 const express = require("express");
+const morgan  = require('morgan');
 const app     = express();
+
+const HTTP_SUCCESS_REQUEST    = 200;
+const HTTP_NO_CONTENT_TO_SEND = 204;
+const HTTP_BAD_REQUEST        = 400;
+const HTTP_NOT_FOUND          = 404;
 
 // To access the data easily, using Express json-parser
 app.use( express.json() );
@@ -27,6 +33,9 @@ let persons = [
   }
 ];
 
+// morgan logger middleware
+app.use(morgan('tiny'));
+
 // route to home site content
 app.get('/', (request, response) => {
   response.send('<h1>The Phonebook App</h1><p>Welcome</p>');
@@ -46,7 +55,7 @@ app.get('/api/persons/:id', (request, response) => {
     response.json( personEntry );
   } else {
     response.statusMessage = `Person with id ${ id } was not found.`;
-    response.status(400).end();
+    response.status(HTTP_NOT_FOUND).end();
   }
 });
 
@@ -55,7 +64,7 @@ app.delete('/api/persons/:id', (request, response) => {
   const id = request.params.id;
 
   persons = persons.filter( person => person.id !== id );
-  response.status(204).end();
+  response.status(HTTP_NO_CONTENT_TO_SEND).end();
 });
 
 /**
@@ -73,18 +82,18 @@ app.post('/api/persons', (request, response) => {
   const body = request.body;
 
   if( !body.name ) {
-    return response.status(400).json({
+    return response.status(HTTP_BAD_REQUEST).json({
       error: 'name is missing.'
     });
   }
   if( !body.number ) {
-    return response.status(400).json({
+    return response.status(HTTP_BAD_REQUEST).json({
       error: 'number is missing.'
     });
   }
   const isDuplicateName = persons.some( person => person.name === body.name );
   if( isDuplicateName ) {
-    return response.status(400).json({
+    return response.status(HTTP_BAD_REQUEST).json({
       error: 'name must be unique.'
     });
   }

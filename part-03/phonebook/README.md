@@ -23,3 +23,7 @@
 ## Step 6: Implement error handling for creating new entries.
 
 **Goal**: Implement error handling for creating new entries. The request is not allowed to succeed, if: the name or number is missing, or the name already exists in the phonebook.
+
+## Step 7: Add the morgan middleware to the application for logging.
+
+**Goal**: Add the morgan middleware to log messages to the console based on the _tiny_ configuration.
