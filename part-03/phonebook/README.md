@@ -27,3 +27,7 @@
 ## Step 7: Add the morgan middleware to the application for logging.
 
 **Goal**: Add the morgan middleware to log messages to the console based on the _tiny_ configuration.
+
+## Step 8: Configure morgan so that it also shows the data sent in HTTP POST requests.
+
+**Goal**: Create a morgan token to show the data sent in HTTP POST requests.

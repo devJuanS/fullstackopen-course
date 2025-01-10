@@ -34,7 +34,13 @@ let persons = [
 ];
 
 // morgan logger middleware
-app.use(morgan('tiny'));
+app.use(
+  morgan(':method :url :status :res[content-length] - :response-time ms :content-post')
+);
+// morgan token that show the data sent in HTTP POST requests
+morgan.token('content-post', 
+  (request, response) => request.method === 'POST' ? JSON.stringify(request.body) : null
+);
 
 // route to home site content
 app.get('/', (request, response) => {

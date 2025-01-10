@@ -15,3 +15,4 @@ In this part the focus shifts towards the backend, implementing a simple REST AP
 5. Step 5: Expand the backend so that new phonebook entries can be added.
 6. Step 6: Implement error handling for creating new entries.
 7. Step 7: Add the morgan middleware to the application for logging.
+8. Step 8: Configure morgan so that it also shows the data sent in HTTP POST requests.
