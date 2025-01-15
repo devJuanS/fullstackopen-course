@@ -159,6 +159,7 @@ function App() {
       return;
     }
 
+    // TODO: comment for reference the assignment of id after validate it is not neccessary when connect frontend to backend server in exercise 3.9 (Phonebook backend step 9)
     const personObject = {
       id: (persons.length + 1).toString(),
       name: newName,

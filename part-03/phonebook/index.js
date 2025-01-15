@@ -1,5 +1,6 @@
 const express = require("express");
 const morgan  = require('morgan');
+const cors    = require('cors');
 const app     = express();
 
 const HTTP_SUCCESS_REQUEST    = 200;
@@ -7,8 +8,11 @@ const HTTP_NO_CONTENT_TO_SEND = 204;
 const HTTP_BAD_REQUEST        = 400;
 const HTTP_NOT_FOUND          = 404;
 
-// To access the data easily, using Express json-parser
+// access the data easily, using Express json-parser
 app.use( express.json() );
+
+// enable the use of resources not in the same origin domain
+app.use( cors() );
 
 let persons = [
   { 
@@ -125,8 +129,15 @@ app.get('/info', (request, response) => {
   `);
 });
 
+// middleware to response when a unknown route is requested
+const unknownEndpoint = (request, response) => {
+  response.status(404).send({ error: 'unknown endpoint' });
+}
+
+app.use(unknownEndpoint);
+
 // setup of listen port for the server
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${ PORT }`);
 });

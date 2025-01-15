@@ -31,3 +31,7 @@
 ## Step 8: Configure morgan so that it also shows the data sent in HTTP POST requests.
 
 **Goal**: Create a morgan token to show the data sent in HTTP POST requests.
+
+## Step 9: Make the backend work with the phonebook frontend.
+
+**Goal**: Add in the backend what is neccessary so that the frontend can access the data from Persons list.
