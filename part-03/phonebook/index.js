@@ -8,12 +8,6 @@ const HTTP_NO_CONTENT_TO_SEND = 204;
 const HTTP_BAD_REQUEST        = 400;
 const HTTP_NOT_FOUND          = 404;
 
-// access the data easily, using Express json-parser
-app.use( express.json() );
-
-// enable the use of resources not in the same origin domain
-app.use( cors() );
-
 let persons = [
   { 
     "id": "1",
@@ -36,6 +30,15 @@ let persons = [
     "number": "39-23-6423122"
   }
 ];
+
+// make Express to show static content
+app.use( express.static('dist') );
+
+// access the data easily, using Express json-parser
+app.use( express.json() );
+
+// enable the use of resources not in the same origin domain
+app.use( cors() );
 
 // morgan logger middleware
 app.use(
