@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 // const baseURL = 'http://localhost:3001/persons';   //<< data in the JSON database
-const baseURL = 'http://localhost:3001/api/persons';  //<< data in the backend server
+// const baseURL = 'http://localhost:3001/api/persons';  //<< data in the backend server
+const baseURL = '/api/persons';  //<< data in the backend server
 
 /**
  * Post a new register in the backend server

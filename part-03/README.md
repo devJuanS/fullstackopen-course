@@ -17,4 +17,5 @@ In this part the focus shifts towards the backend, implementing a simple REST AP
 7. Step 7: Add the morgan middleware to the application for logging.
 8. Step 8: Configure morgan so that it also shows the data sent in HTTP POST requests.
 9. Step 9: Make the backend work with the phonebook frontend.
-   10 Step 10: Deploy the backend to the internet. _[Phonebook backend link](https://fso-phonebook-kx0u.onrender.com/api/persons)_.
+10. Step 10: Deploy the backend to the internet. _[Phonebook backend data link](https://fso-phonebook-kx0u.onrender.com/api/persons)_.
+11. Step 11: Deploy full stack Phonebook application to internet. _[Phonebook full stack app link](https://fso-phonebook-kx0u.onrender.com)_.

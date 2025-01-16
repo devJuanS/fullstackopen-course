@@ -41,3 +41,7 @@
 **Goal**: Configure the PaaS platform (in this cases Render) to deploy the Phonebook backend.
 
 Access to the backend data for the app in _[Phonebook backend link](https://fso-phonebook-kx0u.onrender.com/api/persons)_.
+
+## Step 11: Deploy full stack Phonebook application to internet.
+
+**Goal**: Make configuration in frontend and backend files to deploy the entire application to internet.
