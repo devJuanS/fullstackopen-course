@@ -35,3 +35,9 @@
 ## Step 9: Make the backend work with the phonebook frontend.
 
 **Goal**: Add in the backend what is neccessary so that the frontend can access the data from Persons list.
+
+## Step 10: Deploy the backend to the internet.
+
+**Goal**: Configure the PaaS platform (in this cases Render) to deploy the Phonebook backend.
+
+Access to the backend data for the app in _[Phonebook backend link](https://fso-phonebook-kx0u.onrender.com/api/persons)_.
