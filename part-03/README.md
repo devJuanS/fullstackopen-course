@@ -19,3 +19,4 @@ In this part the focus shifts towards the backend, implementing a simple REST AP
 9. Step 9: Make the backend work with the phonebook frontend.
 10. Step 10: Deploy the backend to the internet. _[Phonebook backend data link](https://fso-phonebook-kx0u.onrender.com/api/persons)_.
 11. Step 11: Deploy full stack Phonebook application to internet. _[Phonebook full stack app link](https://fso-phonebook-kx0u.onrender.com)_.
+12. Step 12: Create a cloud-based MongoDB database for the phonebook application with MongoDB Atlas.

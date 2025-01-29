@@ -45,3 +45,7 @@ Access to the backend data for the app in _[Phonebook backend link](https://fso-
 ## Step 11: Deploy full stack Phonebook application to internet.
 
 **Goal**: Make configuration in frontend and backend files to deploy the entire application to internet.
+
+## Step 12: Create a cloud-based MongoDB database for the phonebook application with MongoDB Atlas.
+
+\*\*Goal: Create a cloud-based MongoDB database and create a `mongo.js` file to save and fetch objects for the Phonebook app.
