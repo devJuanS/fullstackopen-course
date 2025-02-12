@@ -56,6 +56,8 @@ The course materials is written by:
 ## [Part 3 - Programming a server with NodeJS and Express](/part-03)
 
 - [The Phonebook Backend](/part-03/phonebook/)
+- [The Phonebook Command-line Database](/part-03/phonebook/)
+- [The Phonebook Database](/part-03/phonebook/)
 
 ## The Learner 👨🏽‍💻
 

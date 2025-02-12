@@ -1,35 +1,13 @@
 const express = require("express");
 const morgan  = require('morgan');
 const cors    = require('cors');
+const Person  = require('./models/person');
 const app     = express();
 
 const HTTP_SUCCESS_REQUEST    = 200;
 const HTTP_NO_CONTENT_TO_SEND = 204;
 const HTTP_BAD_REQUEST        = 400;
 const HTTP_NOT_FOUND          = 404;
-
-let persons = [
-  { 
-    "id": "1",
-    "name": "Arto Hellas", 
-    "number": "040-123456"
-  },
-  { 
-    "id": "2",
-    "name": "Ada Lovelace", 
-    "number": "39-44-5323523"
-  },
-  { 
-    "id": "3",
-    "name": "Dan Abramov", 
-    "number": "12-43-234345"
-  },
-  { 
-    "id": "4",
-    "name": "Mary Poppendieck", 
-    "number": "39-23-6423122"
-  }
-];
 
 // make Express to show static content
 app.use( express.static('dist') );
@@ -54,24 +32,18 @@ app.get('/', (request, response) => {
   response.send('<h1>The Phonebook App</h1><p>Welcome</p>');
 });
 
-// route to get all registers in persons variable
+// route to get all registers in people collection in MongoDB
 app.get('/api/persons', (request, response) => {
-  response.json( persons );
+  Person.find({}).then(persons => response.json( persons ));
 });
 
 // route to get the information for a single entry
 app.get('/api/persons/:id', (request, response) => {
-  const id = request.params.id;
-  const personEntry = persons.find( person => person.id === id);
-
-  if( personEntry ) {
-    response.json( personEntry );
-  } else {
-    response.statusMessage = `Person with id ${ id } was not found.`;
-    response.status(HTTP_NOT_FOUND).end();
-  }
+  Person.findById(request.params.id)
+    .then(person => response.json( person ));
 });
 
+// TODO: modify according to the usage of MongoDB
 // route to delete a single entry in persons variable
 app.delete('/api/persons/:id', (request, response) => {
   const id = request.params.id;
@@ -80,17 +52,7 @@ app.delete('/api/persons/:id', (request, response) => {
   response.status(HTTP_NO_CONTENT_TO_SEND).end();
 });
 
-/**
- * Generate an id number
- * @returns {String} random Id
- */
-const generateId = () => {
-  const randomId = Math.floor( Math.random() * 1000 );
-
-  return String( randomId );
-}
-
-// route to add a new entry in persons variable
+// route to add a new entry in people collection in MongoDB
 app.post('/api/persons', (request, response) => {
   const body = request.body;
 
@@ -104,23 +66,16 @@ app.post('/api/persons', (request, response) => {
       error: 'number is missing.'
     });
   }
-  const isDuplicateName = persons.some( person => person.name === body.name );
-  if( isDuplicateName ) {
-    return response.status(HTTP_BAD_REQUEST).json({
-      error: 'name must be unique.'
-    });
-  }
 
-  const person = {
-    id: generateId(),
+  const person = new Person({
     name: body.name,
     number: body.number,
-  };
+  });
 
-  persons = persons.concat( person );
-  response.json( person );
+  person.save().then(savedPerson => response.json( savedPerson ));
 });
 
+// TODO: modify according to the usage of MongoDB
 // route to an info page
 app.get('/info', (request, response) => {
   const numberOfEntries = persons.length;

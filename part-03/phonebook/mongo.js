@@ -1,3 +1,5 @@
+// file kept in repository only for reference. Since exercise 3.13 this is not required
+
 const mongoose = require('mongoose');
 
 // validate if password was given as argument

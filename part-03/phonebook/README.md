@@ -46,6 +46,18 @@ Access to the backend data for the app in _[Phonebook backend link](https://fso-
 
 **Goal**: Make configuration in frontend and backend files to deploy the entire application to internet.
 
-## Step 12: Create a cloud-based MongoDB database for the phonebook application with MongoDB Atlas.
+# Phonebook Command-line database
 
-\*\*Goal: Create a cloud-based MongoDB database and create a `mongo.js` file to save and fetch objects for the Phonebook app.
+## Create a cloud-based MongoDB database for the phonebook application with MongoDB Atlas.
+
+**Goal**: Create a cloud-based MongoDB database and create a `mongo.js` file to save and fetch objects for the Phonebook app.
+
+# Phonebook database
+
+## Step 1: Change the fetching of all phonebook entries so that the data is fetched from the database.
+
+**Goal**: Modify the backend routes so that phonebook entries are fetched from the MongoDB database.
+
+## Step 2: Change the backend so that new numbers are saved to the database.
+
+**Goal**: Modify the backend route to post new registers to MongoDB database.

@@ -1,6 +1,6 @@
 {
   "name": "phonebook",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Backend server for the Phonebook app",
   "main": "index.js",
   "keywords": [
@@ -15,7 +15,7 @@
     "start": "node index.js",
     "dev": "node --watch index.js",
     "build:ui": "rm -rf dist && cd ../../part-02/phonebook && npm run build && cp -r dist ../../part-03/phonebook",
-    "deploy:full": "npm run build:ui && git add ../../. && git commit -m uibuild && git push",
+    "deploy:full": "npm run build:ui && git add ../../. && git commit -m \"uibuild by script\" && git push",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
